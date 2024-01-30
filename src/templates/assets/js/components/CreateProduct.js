@@ -7,6 +7,7 @@ import Dropzone from 'react-dropzone'
 const CreateProduct = (props) => {
 
     const [productVariantPrices, setProductVariantPrices] = useState([])
+    const [productName, setProductName] = useState('')
 
     const [productVariants, setProductVariant] = useState([
         {
@@ -75,9 +76,11 @@ const CreateProduct = (props) => {
     }
 
     // Save product
-    let saveProduct = (event) => {
-        event.preventDefault();
+    const saveProduct = () => {
+//        event.preventDefault();
+        console.log('working')
         // TODO : write your code here to save the product
+        console.log('productName', productName)
     }
 
 
@@ -90,7 +93,14 @@ const CreateProduct = (props) => {
                             <div className="card-body">
                                 <div className="form-group">
                                     <label htmlFor="">Product Name</label>
-                                    <input type="text" placeholder="Product Name" className="form-control"/>
+                                    <input type="text"
+                                    placeholder="Product Name"
+                                    className="form-control"
+//                                    value={productName}
+                                    onChange={(e) => {
+                                        console.log('Input changed', e.target.value);
+                                        setProductName(e.target.value);
+                                    }} />
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="">Product SKU</label>
@@ -215,7 +225,7 @@ const CreateProduct = (props) => {
                     </div>
                 </div>
 
-                <button type="button" onClick={saveProduct} className="btn btn-lg btn-primary">Save</button>
+                <button type="button" onClick={()=>saveProduct} className="btn btn-lg btn-primary">Save</button>
                 <button type="button" className="btn btn-secondary btn-lg">Cancel</button>
             </section>
         </div>
